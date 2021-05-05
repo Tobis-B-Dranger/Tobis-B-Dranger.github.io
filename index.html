@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8" /><title>Countdown?</title>
+<!--
+Good for you.
+You know how to see the page source file.
+
+:Tobis B. Dranger
+-->
+</head><style>
+/* import font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+  font-family: 'Roboto Mono', monospace;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+HTML, BODY {
+  margin: 0px;
+  padding: 0px;
+  min-height: 100vh;
+  display: grid;
+  font-size: calc(100vw / 40);
+  transition: font-size 250ms;
+  background: #333;
+  white-space: nowrap;
+}
+RFRAME {
+  margin: 5%;
+  padding: 5%;
+  background: #eee;
+  display: grid;
+}
+COUNTDOWN {
+  margin-top: calc(30vh - 6% );
+  font-size: 5em;
+  text-align: center;
+  font-weight: bolder;
+}
+ll {
+  font-size: 0.25em;
+  vertical-align: top;
+  writing-mode: vertical-lr;
+  transform: rotate(225deg);
+}
+</style><body>
+<rframe>
+  <countdown>
+    <ll>days</ll><days></days>:<ll>hrs </ll><hours></hours>:<ll>mins</ll><minutes></minutes>
+  </countdown>
+</rframe>
+<script>
+const debug=true, _D=86400000, _H=3600000, _M=60000, now=()=>new Date();
+function next(n=now(),m=n.getMonth()+1){
+  n.setDate(m)
+  n.setHours(m+12)
+  n.setMinutes(59)
+  n.setSeconds(0)
+  if (now()>n) return next(new Date(n.setMonth(m)))
+  return n
+}
+function init(){
+  let $ = t=> document.querySelector(t), d = $('DAYS'), h = $('HOURS'), m = $('MINUTES'), N = next();
+  function tick( _d=N-new Date() ){
+    if (_d<0){
+      N=next()
+      return tick()
+    }
+    let D=parseInt(_d/_D), H=parseInt((_d-(D*_D))/_H), M=parseInt((_d-((D*_D)+(H*_H)))/_M)
+    d.innerText = D
+    h.innerText = H
+    m.innerText = M
+  }
+  tick()
+  setTimeout(()=>{
+    setInterval(tick, 15000)
+  }, (60-now().getSeconds())*1000)
+}
+window.addEventListener('load', init)
+</script></body></html>
+<!--
+Well you continued reading all the way to the bottom. Good for you.
+
+My Public Key:
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: Keybase OpenPGP v2.0.9
+Comment: https://keybase.io/crypto
+
+xsFNBGCTBLcBEAC86D1cMmnNHMIH1b1p63/v5epa+8Eq3bNiRZp/PHznl9Wos8iI
+0wW3qbA0NCaEP69tDYgrbC998t1GgFJmULSTyNSKs39/q0tyB/GEfQ9mpQNaffd8
+rtIEGPEZ8XzmNUFGJJ0XOo3vWP9IcRAgBXRRKU4lKd47/91yaXxSQtpsaZ9Epxg+
+cj2GdpX87NGG1IyDcI1b9y1GEAUoF1+bS3RS3tistCyS+b2qZuJ6Q6/oyEyJ8Hbf
+MzRK7n1zyKSkn8U6XvX2wKNj7safnb6T9wozxuMH20woiy/77bcnM8P4szYsZu5P
+pg9yEa5J0VwDiuhim3Qr7o7sigFAqkg4+BQ4nLMJqknEOCGU4SEUtyB5blJrIrco
+vh/+nSaGIsiXatUYjLOaXww79zJoUuSMvTZix4/3XfRPhrS52OyvtxkMFfyBxJnM
+HskTsUYMY73pqBzQ+32L1FzfaOtX+6Tl2lxUI/ahd7uHlrHbbbAdR9HpjpeARwuC
+hVRhh2owxUwOcu6h8X9syonpV+fdvw66hR2Jky/FYzDzQSTCOekhY4Vm1Qmw/gjc
+8q3l56tiHrqWvwijSZxyRtqiYRW7vxA7X57wFP0rCK6cJ23oQ9gzupchLzDP7Ubi
+fm1s2m+X49I8zdiChqSRusnyIp9IspWPnXrhlBBMPPzo4twQO9Q4Rsc54QARAQAB
+zWdUb2JpcyBCLiBEcmFuZ2VyIChJbiBhIHdvcmxkIG9mIGluc2VjdXJpdHkgd2Ug
+aGF2ZSB0byBtYWtlIHNvbWUgb2Ygb3VyIG93bikgPFRvYmlzLkIuRHJhbmdlckBn
+bWFpbC5jb20+wsFwBBMBCgAaBQJgkwS3AhsvAwsJBwMVCggCHgECF4ACGQEACgkQ
+Ew8VHNsBTtfyaBAAoYy5cB9rqrXHs5s6fRrG7GFimMUopNmQkua7bsKRQbdxkkKT
+E9wdUnqa2KNy3A9q/ZPwjhjxNdGhWwJrDHd27jxP9SXJ+5S6wuaI07Em7qrXCcLL
+u09eEAZ6K3UpQEz45YmyRYm8QEMIzwopT9z++aoGb7a2icVUUetZQOA3fqZe3A4v
+iJP3cms8qah9Zdh31pt+aRpRz7YHhXAGi4RVf21Uz26xlFQxZ1sF8OlHA1093Fcj
+8W825S6PWdsM9yJg3oac07qFYDl++v/d3f0G7E6LHn7qhHucCZUYuDUSmBAzgxu+
+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
+ET38TquavCn+Q5P3bxmpFdMBvOhmTWWEd2U=
+=snt/
+-----END PGP PUBLIC KEY BLOCK-----
+
+- and a link to a online browser only based pgp client
+  - https://smartninja-pgp.appspot.com/
+- enjoy
+
+Tobis B. Dranger
+-->
